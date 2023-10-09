@@ -52,12 +52,12 @@
         $t2 = strtoupper($t2);
 
         $tFinal = match(true) {
-            $t1 == "C" && $t2 == "F" => caF($temperatura),
-            $t1 == "F" && $t2 == "C" => faC($temperatura),
-            $t1 == "C" && $t2 == "K" => caK($temperatura),
-            $t1 == "K" && $t2 == "C" => kaC($temperatura),
-            $t1 == "K" && $t2 == "F" => kaF($temperatura),
-            $t1 == "F" && $t2 == "K" => faK($temperatura),
+            $t1 == "C" && $t2 == "F" => ($t1 * 9 / 5) + 32;,
+            $t1 == "F" && $t2 == "C" => ($t1-32) * 5 / 9,
+            $t1 == "C" && $t2 == "K" => $t1 + 273.15,
+            $t1 == "K" && $t2 == "C" => $t1 - 273.15,
+            $t1 == "K" && $t2 == "F" => ($t1 - 273.15) * 9 / 5 +32,
+            $t1 == "F" && $t2 == "K" => ($t1 - 32) * 5 / 9 + 273.15,
             $t1 == $t2 => $temperatura
         };
         return $tFinal;
