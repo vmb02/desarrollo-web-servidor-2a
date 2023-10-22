@@ -8,17 +8,7 @@
 </head>
 <body>
 
-    <form action="" method="post">
-            <label for="base">Base</label>
-            <input type="text" id="base" name="base">
-            <?php if(isset($err_base)) echo $err_base ?>
-            <br>
-            <label for="exponente">Exponente</label>
-            <input type="text" id="exponente" name="exponente">
-            <?php if(isset($err_exponente)) echo $err_exponente ?>
-            <br>
-            <input type="submit" value="Calcular">
-        </form> 
+    
 
     <?php
     if($_SERVER["REQUEST_METHOD"] == "POST") {
@@ -65,7 +55,22 @@
         $salida = trim($salida);
         return $salida;
     }
+
+    // Por qué el post no puede ir en la cabecera
     ?>
+
+    
+        <form action="" method="post">
+                <label for="base">Base</label>
+                <input type="text" id="base" name="base">
+                <?php if(isset($err_base)) echo $err_base ?>
+                <br>
+                <label for="exponente">Exponente</label>
+                <input type="text" id="exponente" name="exponente">
+                <?php if(isset($err_exponente)) echo $err_exponente ?>
+                <br>
+                <input type="submit" value="Calcular">
+            </form> 
 
 </body>
 </html>
