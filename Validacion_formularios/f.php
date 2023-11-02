@@ -35,6 +35,66 @@
                 }
             }
         }
+
+        //Validación del precio
+        if(strlen($temp_precio) == 0) {
+            $err_precio = "El precio es un campo obligatorio";
+        } else {
+            if(!is_numeric($temp_precio)) {
+                $err_precio = "El precio tiene que ser un número."
+            } else {
+                $temp_precio = (float)$temp_precio;
+                if($temp_precio < 0) {
+                    $err_precio = "El precio no puede ser negativo";
+                } else {
+                    if($temp_precio > 99999.99) {
+                        $err_precio = "El precio no puede ser superior a 99999.99";
+                    } else {
+                        $precioProducto = $temp_precio;
+                    }
+                }
+            }
+        }
+
+        //Validación de la descripción
+        if(strlen($temp_descripcion) == 0) {
+            $err_descripcion = "La descripción es un campo obligatorio";
+        } else {
+            if(strlen($temp_descripcion) > 255) {
+                $err_descripcion = "La descripción no puede ser superior a 255 caracteres";
+            } else {
+                $descripcion = $temp_descripcion;
+            }
+        }
+
+        //Validación de la cantidad
+        if(strlen($temp_cantidad) == 0) {
+            $err_cantidad = "La cantidad es un campo obligatorio";
+        } else {
+            if(filter_var($temp_cantidad, FILTER_VALIDATE_INT) === FALSE) {
+                $err_cantidad = "La cantidad tiene que ser un número entero";
+            } else {
+                $temp_cantidad = (int)$err_cantidad;
+                if($temp_cantidad < 0) {
+                    $err_cantidad = "La cantidad no puede ser negativa";
+                } else {
+                    if($temp_cantidad > 99999) {
+                        $err_cantidad = "La cantidad no puede ser superior a 99999";
+                    } else {
+                        $cantidad = $temp_cantidad;
+                    }
+                }
+            }
+        }
+        
+        if(isset($nombre) && isset($precioProducto) && isset($descripcion) && isset($cantidad)) {
+            $sql = "INSERT INTO productos
+                    VALUES($nombre,
+                            $precio,
+                            $descripcion,
+                            $cantidad)";
+            $conexion -> query($sql);
+        }
     }
     
     
@@ -44,15 +104,19 @@
     <fieldset>
         <label>Nombre Producto: </label>
         <input type="text" name="nombreProducto">
+        <?php if(isset($err_nombre)) echo $err_nombre ?>
         <br><br>
         <label>Precio: </label>
         <input type="number" name="precioProducto">
+        <?php if(isset($err_precio)) echo $err_precio ?>
         <br><br>
         <label>Descripción: </label>
         <input type="text" name="descripcion">
+        <?php if(isset($err_descripcion)) echo $err_descripcion ?>
         <br><br>
         <label>Cantidad: </label>
         <input type="number" name="cantidad">
+        <?php if(isset($err_precio)) echo $err_precio ?>
         <br><br>
         <input type="submit" value="Añadir">
     </fieldset>
