@@ -25,6 +25,22 @@
                     <input class="btn btn-primary" type="submit" value="Buscar">
                 </div>
             </div>
+            <div class="row mb-3">
+                <div class="col-1">
+                    <label class="form-label">Filtrar</label>
+                </div>
+                <div class="col-2">
+                    <select class="form-select" name="columna">
+                        <option selected value="titulo">Titulo</option>
+                        <option value="distribuidora">Distribuidora</option>
+                        <option value="precio">Precio</option>
+                    </select>
+                </div>
+                <div class="col-2">
+                    <select selected value="asc">Ascendente</select>
+                    <select value="desc">Descendente</select>
+                </div>
+            </div>
         </form>
 
         <table class="table table-striped table-hover">

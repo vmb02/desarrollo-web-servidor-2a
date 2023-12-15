@@ -11,9 +11,12 @@
     <?php 
     if($_SERVER["REQUEST_METHOD"] == "POST") {
         $titulo = $_POST["titulo"];
+        $columna = $_POST["columna"];
+        $fila = $_POST["fila"];
 
         $sql = $conexion -> prepare("SELECT * FROM videojuegos 
-        WHERE titulo LIKE CONCAT ('%',?,'%')");
+        WHERE titulo LIKE  CONCAT ('%',?,'%')
+        ORDER BY ");
         $sql -> bind_param("s", $titulo);
         $sql -> execute();
         $resultado = $sql -> get_result();
