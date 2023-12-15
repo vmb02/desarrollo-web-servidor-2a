@@ -9,10 +9,15 @@
 </head>
 <body>
     <?php 
-        $sql = $conexion -> prepare("SELECT * FROM videojuegos");
+    if($_SERVER["REQUEST_METHOD"] == "POST") {
+        $titulo = $_POST["titulo"];
+
+        $sql = $conexion -> prepare("SELECT * FROM videojuegos WHERE titulo = ?");
+        $sql -> bind_param("s", $titulo);
         $sql -> execute();
         $resultado = $sql -> get_result();
         $conexion -> close();
+    }       
     ?>
     <div class="container">
         <h1>Listado de videojuegos</h1>
