@@ -9,14 +9,30 @@
 </head>
 <body>
     <?php 
+    if($_SERVER["REQUEST_METHOD"] == "POST") {
+        $titulo = $_POST["titulo"];
+        $columna = $_POST["columna"];
+        $orden = $_POST["orden"];
+
+        $sql = $conexion -> prepare("SELECT * FROM videojuegos
+            WHERE titulo LIKE CONCAT('%',?,'%')
+            ORDER BY $columna $orden");
+        $sql -> bind_param("s", $titulo);
+        $sql -> execute();
+        $resultado = $sql -> get_result();
+        $conexion -> close();
+    }
+
+    if($_SERVER["REQUEST_METHOD"] == "GET") {
         $sql = $conexion -> prepare("SELECT * FROM videojuegos");
         $sql -> execute();
         $resultado = $sql -> get_result();
         $conexion -> close();
+    }
     ?>
     <div class="container">
         <h1>Listado de videojuegos</h1>
-        <form action="search_videogame.php" method="post">
+        <form action="" method="post">
             <div class="row mb-3">
                 <div class="col-4">
                     <input class="form-control" type="text" name="titulo">
@@ -37,18 +53,22 @@
                     </select>
                 </div>
                 <div class="col-2">
-                    <select selected value="asc">Ascendente</select>
-                    <select value="desc">Descendente</select>
+                    <select class="form-select" name="orden">
+                        <option selected value="asc">Ascendente</option>
+                        <option value="desc">Descendente</option>
+                    </select>
                 </div>
             </div>
         </form>
 
-        <table class="table table-striped table-hover">
+        <table class="table table-striped">
             <header>
                 <tr>
                     <th>Título</th>
                     <th>Distribuidora</th>
                     <th>Precio</th>
+                    <th></th>
+                    <th></th>
                 </tr>
             </header>
             <tbody>
@@ -58,7 +78,20 @@
                     echo "<td>" . $fila["titulo"] . "</td>";
                     echo "<td>" . $fila["distribuidora"] . "</td>";
                     echo "<td>" . $fila["precio"] . "</td>";
-                    echo "</tr>";
+                    echo "<td>"; ?>
+                    <form action="view_videogame.php" method="get">
+                        <input type="hidden" name="titulo" value="<?php echo $fila["titulo"] ?>">
+                        <input class="btn btn-secondary" type="submit" value="Ver">
+                    </form>
+                    <?php
+                    echo "</td><td>";
+                    ?>
+                    <form action="delete_videogame.php" method="POST">
+                        <input type="hidden" name="titulo" value="<?php echo $fila["titulo"]; ?>">
+                        <input class="btn btn-danger" type="submit" value="Eliminar">
+                    </form>
+                    <?php
+                    echo "</td></tr>";
                 }
                 ?>
             </tbody>

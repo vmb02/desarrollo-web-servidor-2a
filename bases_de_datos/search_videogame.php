@@ -16,7 +16,7 @@
 
         $sql = $conexion -> prepare("SELECT * FROM videojuegos 
         WHERE titulo LIKE  CONCAT ('%',?,'%')
-        ORDER BY ");
+        ORDER BY $columna $orden");
         $sql -> bind_param("s", $titulo);
         $sql -> execute();
         $resultado = $sql -> get_result();
@@ -36,7 +36,7 @@
             </div>
         </form>
 
-        <table class="table table-striped table-hover">
+        <table class="table table-striped">
             <header>
                 <tr>
                     <th>Título</th>
