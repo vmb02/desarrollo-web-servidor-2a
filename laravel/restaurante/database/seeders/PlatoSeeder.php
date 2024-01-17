@@ -17,12 +17,12 @@ class PlatoSeeder extends Seeder
             [
                 'nombre' => 'Rabo de toro',
                 'precio' => 14.36,
-                'tipo' => 'Ración'
+                'tipo_plato_id' => 1
             ],
             [
                 'nombre' => 'Rosada frita',
                 'precio' => 12-87,
-                'tipo' => 'Ración'
+                'tipo_plato_id' => 3
             ]
         ]);
     }
