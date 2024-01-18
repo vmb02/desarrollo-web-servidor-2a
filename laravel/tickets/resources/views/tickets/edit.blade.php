@@ -11,6 +11,7 @@
     <br>
     <div class="container" style="background-color: lightgrey; border-radius:1rem">
         <br>
+        <h2 style="color:rgb(0, 141, 12)">Editar Ticket</h2><br>
         <form method="post" action="{{route('tickets.update', ['ticket'=>$ticket->id])}}">    
             @csrf
             {{ method_field('PUT') }}

@@ -11,12 +11,13 @@
     
 
     <div class="container">
+        <br>
         <h2>Tickets</h2><br>
         <p>
             <a href="{{ route('tickets.create') }}">Crear Ticket</a>
         </p><br>
 
-        <table class="table table-sm">
+        <table class="table table-dark table-striped">
             <thead>
                 <tr>
                     <th>Fecha</th>

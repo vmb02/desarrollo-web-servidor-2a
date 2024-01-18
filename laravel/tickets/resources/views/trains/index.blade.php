@@ -11,13 +11,14 @@
 <body>
 
     <div class="container">
+        <br>
         <h2>Trains</h2><br>
 
         <p>
             <a href="{{ route('trains.create') }}">Crear Train</a>
         </p><br>
 
-        <table class="table table-sm">
+        <table class="table table-dark table-striped">
             <thead>
                 <tr>
                     <th>Name</th>
@@ -60,7 +61,6 @@
                 @endforeach
             </tbody>
         </table>
-
     </div>
     
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>

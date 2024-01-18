@@ -11,7 +11,7 @@
     <br>
     <div class="container" style="background-color: lightgrey; border-radius:1rem">
         <br>
-        <h1 style="color:rgb(0, 158, 13)">Ver Ticket</h1>
+        <h2 style="color:rgb(0, 141, 12)">Ver Ticket</h2><br>
         <p>Date: {{ $ticket->date }}</p>
         <p>Price: {{ $ticket->price }}</p>
         <p>Tren: {{ $ticket->train_id }}</p>

@@ -11,7 +11,7 @@
     <br>
     <div class="container" style="background-color: lightgrey; border-radius:1rem">
         <br>
-        <h2 style="color:rgb(0, 158, 13)">Ver Train</h2>
+        <h2 style="color:rgb(0, 141, 12)">Ver Train</h2><br>
         <p>Name: {{ $train->name }}</p>
         <p>Passengers: {{ $train->passengers }}</p>
         <p>Year: {{ $train->year }}</p>

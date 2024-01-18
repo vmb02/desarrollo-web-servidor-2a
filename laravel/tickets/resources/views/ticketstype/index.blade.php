@@ -11,7 +11,7 @@
     <br>
     <div class="container" style="background-color: lightgrey; border-radius:1rem">
         <br>
-        <h2>Tipos de Tickets</h2>
+        <h2 style="color:rgb(0, 141, 12)">Tipos de Tickets</h2><br>
         <ul>
         @foreach ($ticket_types as $ticket_type)
                 <li>{{ $ticket_type->type }}</li>
