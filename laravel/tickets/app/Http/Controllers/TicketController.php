@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\models\Ticket;
+use App\models\TicketType;
+use App\models\Train;
 use DB;
 
 class TicketController extends Controller
@@ -22,7 +24,9 @@ class TicketController extends Controller
      */
     public function create()
     {
-        return view('tickets/create');
+        $trains = Train::all();
+        $tickets_types = TicketType::all();
+        return view('tickets/create', ['tickets_types' => $tickets_types], ['trains' => $trains]);
     }
 
     /**
