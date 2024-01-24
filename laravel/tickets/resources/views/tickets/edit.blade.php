@@ -21,15 +21,15 @@
             <input type="number" step="0.01" name="price" value="{{ $ticket->price}}">
             <label>Train: </label>
             <select name="train_id">
-                <option value="1">Cercanías</option>
-                <option value="2">Media Distancia</option>
-                <option value="3">Alta Velocidad</option>
+                @foreach ($trains as $train)
+                    <option value="{{ $train->id }}">{{ $train->name }}</option>
+                @endforeach
             </select>
             <label>Type: </label>
             <select name="ticket_type_id">
-                <option value="1">Billete sencillo</option>
-                <option value="2">Abono mensual</option>
-                <option value="3">Abono trimestral</option>
+                @foreach ($tickets_types as $ticket_type)
+                    <option value="{{ $ticket_type->id }}">{{ $ticket_type->type }}</option>
+                @endforeach
             </select>
             <br><br>
             <input class="btn btn-success" type="submit" value="Editar">

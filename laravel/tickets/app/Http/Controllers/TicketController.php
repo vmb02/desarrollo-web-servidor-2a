@@ -61,7 +61,9 @@ class TicketController extends Controller
     public function edit(string $id)
     {
         $ticket = Ticket::find($id);
-        return view('tickets/edit', ['ticket'=>$ticket]);
+        $trains = Train::all();
+        $tickets_types = TicketType::all();
+        return view('tickets/edit', ['ticket'=>$ticket], ['trains'=>$trains], ['tickets_types'=>$tickets_types]);
     }
 
     /**

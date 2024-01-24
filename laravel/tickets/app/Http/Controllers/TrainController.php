@@ -59,7 +59,8 @@ class TrainController extends Controller
     public function edit(string $id)
     {
         $train = Train::find($id);
-        return view('trains/edit', ['train'=>$train]);
+        $trains_types = TrainType::all();
+        return view('trains/edit', ['train'=>$train], ['trains_types'=>$trains_types]);
     }
 
     /**
