@@ -1,4 +1,5 @@
 <!DOCTYPE html>
+
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -9,36 +10,24 @@
     <form action="" method="post">
         Título: <input type="text" name="titulo"><br><br>
         Número de animes: <select name="limite">
-            <option value="1">1</option>
-            <option value="2">2</option>
-            <option value="3">3</option>
-            <option value="4">4</option>
-            <option value="5">5</option>
-            <option value="" selected>Sin límite</option>
+            <option selected value="">Todos</option>
+            <?php for($i = 1; $i <= 5; $i++) {?>
+                <option value="<?php echo $i ?>"><?php echo $i ?></option>
+            <?php } ?>
         </select><br><br>
         Min score: <select name="minscore">
-            <option value="1" selected>1</option>
-            <option value="2">2</option>
-            <option value="3">3</option>
-            <option value="4">4</option>
-            <option value="5">5</option>
-            <option value="6">6</option>
-            <option value="7">7</option>
-            <option value="8">8</option>
-            <option value="9">9</option>
-            <option value="10">10</option>
+            <option selected hidden value="1">1</option>
+            <?php for($i = 1; $i <= 10; $i++) { ?>
+                <option value="<?php echo $i ?>"><?php echo $i ?></option>
+            <?php } ?>
+
         </select><br><br>
         Max score: <select name="maxscore">
-        <option value="1">1</option>
-            <option value="2">2</option>
-            <option value="3">3</option>
-            <option value="4">4</option>
-            <option value="5">5</option>
-            <option value="6">6</option>
-            <option value="7">7</option>
-            <option value="8">8</option>
-            <option value="9">9</option>
-            <option value="10" selected>10</option>
+            <option selected hidden value="10">10</option>
+            <?php for($i = 1; $i <= 10; $i++) { ?>
+                <option value="<?php echo $i ?>"><?php echo $i ?></option>
+            <?php } ?>
+                
         </select><br><br>
         <input type="submit" value="Buscar">
         
@@ -51,7 +40,13 @@
         $minscore = $_POST["minscore"];
         $maxscore = $_POST["maxscore"];
         $titulo = preg_replace('/\s+/', '+', $titulo);
-        $apiUrl = "https://api.jikan.moe/v4/anime?sfw&q=$titulo&limit=$limite&min_score=$minscore&max_score=$maxscore";
+
+        $q = "q=$titulo";
+        $limit = "limit=$limite";
+        $min_score = "min_score=$minscore";
+        $max_score = "max_score=$maxscore";
+
+        $apiUrl = "https://api.jikan.moe/v4/anime?$q&$limit&$min_score&$max_score";
 
         $curl = curl_init();
         curl_setopt($curl, CURLOPT_URL, $apiUrl);
@@ -64,6 +59,8 @@
             <?php $imagen = $anime['images']['jpg']['image_url']; ?>
 
             <h1><?php echo $anime['title'] ?></h1>
+            <p><a href="show_anime.php?id=<?php echo $anime['mal_id'] ?>">Ver detalles</a></p>
+            <p><?php echo $anime['score'] ?></p>
             <img src="<?php echo $imagen ?>">
         <?php }
     }
